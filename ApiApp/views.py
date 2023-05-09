@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
+
 from .models import *
 from .serializers import *
 import requests
@@ -152,3 +154,20 @@ class NewViewSet(viewsets.ModelViewSet):
         }
         return Response(DATA)
     
+@api_view(['post'])
+def Api_Login(request):
+    username = request.POST['username']
+    password = request.POST['password']
+    try:
+        user=User.objects.get(username=username)
+        if user.check_password(password):
+            try:
+                token=Token.objects.get(user=user)
+            except:
+                token=Token.objects.create(user=user)
+            return Response({"status":True,"token":token.key})
+        else:
+            return Response({"status":False},status=400)
+    except Exception as r:
+        print(r)
+        return Response({"status":False},status=400)
