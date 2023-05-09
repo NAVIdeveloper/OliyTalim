@@ -5,20 +5,20 @@ from django.db import models
 class Rahbarlar(models.Model):
     uz_ism_familiya = models.CharField(max_length=255)
     ru_ism_familiya = models.CharField(max_length=255,null=True,blank=True)
-
+    img=models.ImageField(upload_to="rahbarlar/",null=True,blank=True)
     uz_lavozim = models.CharField(max_length=255)
     ru_lavozim = models.CharField(max_length=255,null=True,blank=True)
     en_lavozim = models.CharField(max_length=255,null=True,blank=True)
-    
+
     telefon = models.CharField(max_length=255)
     mail = models.CharField(max_length=255)
-    
+
     uz_qabul_qilish = models.CharField(max_length=555)
     ru_qabul_qilish = models.CharField(max_length=555,null=True,blank=True)
     en_qabul_qilish = models.CharField(max_length=555,null=True,blank=True)
-    
+
     def __str__(self):
-        self.uz_ism_familiya
+        return self.uz_ism_familiya
 
 
 class Ishlar(models.Model):
@@ -38,7 +38,7 @@ class Ariza(models.Model):
     yoshi = models.IntegerField()
     staj = models.CharField(max_length=255)
     ishchi_haqida = models.TextField(null=True,blank=True)
-    
+
     def __str__(self):
         return f"{self.ism} {self.familiya}"
 
@@ -47,15 +47,15 @@ class New(models.Model):
     uz_title = models.CharField(max_length=999)
     # ru_title = models.CharField(max_length=999)
     # en_title = models.CharField(max_length=999)
-    
+
     uz_text = models.TextField()
     # ru_text = models.TextField()
     # en_text = models.TextField()
-    
+
     img = models.ImageField(upload_to='news/')
     img_2 = models.ImageField(upload_to='news/',null=True,blank=True)
     img_3 = models.ImageField(upload_to='news/',null=True,blank=True)
-    
+
 
     uz_text_2 = models.TextField(null=True,blank=True)
     # ru_text_2 = models.TextField(null=True,blank=True)
@@ -69,4 +69,4 @@ class New(models.Model):
 
     def __str__(self):
         return self.uz_title
-    
+
