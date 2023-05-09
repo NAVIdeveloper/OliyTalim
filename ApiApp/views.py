@@ -26,6 +26,8 @@ class RahbarlarViewSet(viewsets.ModelViewSet):
 
         return [IsAdminUser()]
 
+
+
 class IshlarViewSet(viewsets.ModelViewSet):
     queryset = Ishlar.objects.all()
     serializer_class = LoaderIshlar
@@ -93,3 +95,60 @@ def Api_Tanlovlar(request):
     
 #     }
 #     return Response(DATA)
+
+def get_data_news(url):
+    tanovlar = []
+    url = url
+    get_all = requests.get(url)
+    html = BeautifulSoup(get_all.text,'html.parser')
+    cards = html.find('table')
+    # print(cards)
+    for i in cards.find_all("td"):
+        img = i.find("img")
+        if img == None:
+            continue
+
+        img = img['src']
+        print(img)
+        # link = "https://grant.mininnovation.uz/"+i.find("a")['href']
+        date = i.find_all("span")[-1].get_text()
+        manba = i.find("span").find("a")
+        manba_nomi = manba.get_text()
+        manba = manba['href']
+        title = i.find("a")
+        link = "https://edu.uz/"+title['href']
+        title=title.get_text()
+        text=i.find_all('div')[-1].find_all('p')
+        if text == None:
+            pass
+        else:
+            text = text[-1]
+            text=text.get_text()
+        tanovlar.append(
+            {"title":title,"text":text,"link":link,"img":img,"sana":date,"manba_link":manba,"manba_nomi":manba_nomi}
+        )
+    return tanovlar
+
+class NewViewSet(viewsets.ModelViewSet):
+    queryset = New.objects.all()
+    serializer_class = LoaderNew
+    permission_classes = [IsAdminUser]
+    
+    def get_permissions(self):
+        if self.action == "list" or self.action == 'retrieve':
+            return [AllowAny()]
+
+        return [IsAdminUser()]
+    
+    def list(self, request):
+        queryset = New.objects.all()
+        serializer = LoaderNew(queryset, many=True)
+        
+        eduuz = get_data_news("https://edu.uz/uz/news/index")
+
+        DATA = {
+            "edu.uz":eduuz,
+            "local":serializer.data
+        }
+        return Response(DATA)
+    

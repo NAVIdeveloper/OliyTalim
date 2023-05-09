@@ -19,3 +19,7 @@ class LoaderAriza(ModelSerializer):
         model = Ariza
         fields = "__all__"
 
+class LoaderNew(ModelSerializer):
+    class Meta:
+        model = New
+        fields = "__all__"
