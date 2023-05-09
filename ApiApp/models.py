@@ -26,7 +26,7 @@ class Ishlar(models.Model):
     manzil = models.CharField(max_length=355)
     talablar = models.TextField()
     contact = models.CharField(max_length=255)
-    namuna_cv = models.FileField(upload_to='example_cv/')
+    maosh = models.CharField(max_length=555,null=True,blank=True)
 
     def __str__(self):
         return self.nomi
@@ -38,7 +38,6 @@ class Ariza(models.Model):
     yoshi = models.IntegerField()
     staj = models.CharField(max_length=255)
     ishchi_haqida = models.TextField(null=True,blank=True)
-    cv = models.FileField(upload_to='cv/',null=True,blank=True)
     
     def __str__(self):
         return f"{self.ism} {self.familiya}"
