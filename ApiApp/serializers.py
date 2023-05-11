@@ -23,3 +23,9 @@ class LoaderNew(ModelSerializer):
     class Meta:
         model = New
         fields = "__all__"
+
+class LoaderHududlar(ModelSerializer):
+    class Meta:
+        model = Hududlar
+        fields = "__all__"
+        

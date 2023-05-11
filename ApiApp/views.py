@@ -52,6 +52,17 @@ class ArizaViewSet(viewsets.ModelViewSet):
 
         return [IsAdminUser()]
 
+class HududlarViewSet(viewsets.ModelViewSet):
+    queryset = Hududlar.objects.all()
+    serializer_class = LoaderHududlar
+    permission_classes = [IsAdminUser]
+    
+    def get_permissions(self):
+        if self.action == "list" or self.action == 'retrieve':
+            return [AllowAny()]
+
+        return [IsAdminUser()]
+
 def get_data_tanlovlar(url):
     tanovlar = []
     url = url
@@ -299,8 +310,9 @@ class NewViewSet(viewsets.ModelViewSet):
     
 @api_view(['post'])
 def Api_Login(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    print(request.data)
+    username = request.data['username']
+    password = request.data['password']
     try:
         user=User.objects.get(username=username)
         if user.check_password(password):

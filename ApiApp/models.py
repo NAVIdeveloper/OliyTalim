@@ -72,3 +72,14 @@ class New(models.Model):
     def __str__(self):
         return self.uz_title
 
+class Hududlar(models.Model):
+    img = models.ImageField(upload_to='hududlar/')
+    manzil = models.CharField(max_length=255)
+    aholi = models.BigIntegerField(default=0)
+    maydoni = models.CharField(max_length=255)
+    loyhalar_soni = models.IntegerField(default=0)
+    ish_joyi_soni = models.BigIntegerField(default=0)
+
+    def __str__(self):
+        return self.manzil
+
