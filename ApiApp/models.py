@@ -27,6 +27,7 @@ class Ishlar(models.Model):
     talablar = models.TextField()
     contact = models.CharField(max_length=255)
     maosh = models.CharField(max_length=555,null=True,blank=True)
+    mudat = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.nomi
@@ -39,7 +40,7 @@ class Ariza(models.Model):
     staj = models.CharField(max_length=255)
     ishchi_haqida = models.TextField(null=True,blank=True)
     contact = models.CharField(max_length=255,null=True,blank=True)
-    
+
     def __str__(self):
         return f"{self.ism} {self.familiya}"
 
