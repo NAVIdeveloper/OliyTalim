@@ -8,6 +8,7 @@ admin.site.register(Ishlar)
 admin.site.register(Ariza)
 admin.site.register(New)
 admin.site.register(Hududlar)
+# admin.site.register(BaholashMezon)
 
 # admin.site.register(Token)
 

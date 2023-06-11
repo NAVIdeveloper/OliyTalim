@@ -52,6 +52,17 @@ class ArizaViewSet(viewsets.ModelViewSet):
 
         return [IsAdminUser()]
 
+# class BaholashMezonViewSet(viewsets.ModelViewSet):
+#     queryset = BaholashMezon.objects.all()
+#     serializer_class = LoaderBaholashMezon
+#     permission_classes = [IsAdminUser]
+    
+#     def get_permissions(self):
+#         if self.action == "list" or self.action == 'retrieve':
+#             return [AllowAny()]
+
+#         return [IsAdminUser()]
+
 class HududlarViewSet(viewsets.ModelViewSet):
     queryset = Hududlar.objects.all()
     serializer_class = LoaderHududlar

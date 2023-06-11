@@ -8,3 +8,5 @@ router.register('ishlar', IshlarViewSet)
 router.register('ariza',ArizaViewSet)
 router.register('news',NewViewSet)
 router.register("hududlar",HududlarViewSet)
+
+# router.register("baholash",BaholashMezonViewSet)

@@ -83,3 +83,25 @@ class Hududlar(models.Model):
     def __str__(self):
         return self.manzil
 
+
+
+# class BaholashMezon(models.Model):
+#     title = models.CharField(max_length=555)
+#     yonalish=models.CharField(max_length=555)
+
+#     category_1_title = models.CharField(max_length=555)
+#     category_2_title = models.CharField(max_length=555)
+#     category_3_title = models.CharField(max_length=555)
+#     category_4_title = models.CharField(max_length=555)
+#     category_5_title = models.CharField(max_length=555)
+    
+#     category_1_ball = models.IntegerField(default=0)
+#     category_2_ball = models.IntegerField(default=0)
+#     category_3_ball = models.IntegerField(default=0)
+#     category_4_ball = models.IntegerField(default=0)
+#     category_5_ball = models.IntegerField(default=0)
+    
+#     sum_ball = models.IntegerField(default=0,null=True,blank=True)
+
+#     def __str__(self):
+#         return self.title
