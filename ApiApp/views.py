@@ -52,16 +52,16 @@ class ArizaViewSet(viewsets.ModelViewSet):
 
         return [IsAdminUser()]
 
-# class BaholashMezonViewSet(viewsets.ModelViewSet):
-#     queryset = BaholashMezon.objects.all()
-#     serializer_class = LoaderBaholashMezon
-#     permission_classes = [IsAdminUser]
+class BaholashMezonViewSet(viewsets.ModelViewSet):
+    queryset = BaholashMezon.objects.all()
+    serializer_class = LoaderBaholashMezon
+    permission_classes = [IsAdminUser]
     
-#     def get_permissions(self):
-#         if self.action == "list" or self.action == 'retrieve':
-#             return [AllowAny()]
+    def get_permissions(self):
+        if self.action == "list" or self.action == 'retrieve':
+            return [AllowAny()]
 
-#         return [IsAdminUser()]
+        return [IsAdminUser()]
 
 class HududlarViewSet(viewsets.ModelViewSet):
     queryset = Hududlar.objects.all()
@@ -211,11 +211,12 @@ def get_data_news(url):
         title = i.find("a")
         link = "https://edu.uz/"+title['href']
         title=title.get_text()
-        text=i.find_all('div')[-1].find_all('p')
+        text=i.find('p',class_='blog_text')
+        text=text.find_next_sibling('p')
+        print(text)
         if text == None:
             pass
         else:
-            text = text[-1]
             text=text.get_text()
         tanovlar.append(
             {"title":title,"text":text,"link":link,"img":img,"sana":date,"manba_link":manba,"manba_nomi":manba_nomi}

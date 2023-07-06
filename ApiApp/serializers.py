@@ -29,7 +29,7 @@ class LoaderHududlar(ModelSerializer):
         model = Hududlar
         fields = "__all__"
         
-# class LoaderBaholashMezon(ModelSerializer):
-#     class Meta:
-#         model = BaholashMezon
-#         fields = "__all__"
+class LoaderBaholashMezon(ModelSerializer):
+    class Meta:
+        model = BaholashMezon
+        fields = "__all__"
