@@ -10,3 +10,5 @@ router.register('news',NewViewSet)
 router.register("hududlar",HududlarViewSet)
 
 router.register("baholash",BaholashMezonViewSet)
+
+router.register("ballash",BaholashViewSet)

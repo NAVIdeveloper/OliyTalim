@@ -1,5 +1,5 @@
 from .models import *
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer,SerializerMethodField
 
 
 class LoaderRahbarlar(ModelSerializer):
@@ -32,4 +32,14 @@ class LoaderHududlar(ModelSerializer):
 class LoaderBaholashMezon(ModelSerializer):
     class Meta:
         model = BaholashMezon
+        fields = "__all__"
+
+class LoaderBaholash(ModelSerializer):
+    umumiy = SerializerMethodField()
+    def get_umumiy(self,obj):
+        total = obj.oquv_ishlari+obj.yoshlar+obj.ishlab_chiqarish+obj.moliyaviy+obj.xojalik+obj.talim_sifati+obj.ijro_intizomi
+        total -= obj.jazo
+        return total
+    class Meta:
+        model = Baholash
         fields = "__all__"

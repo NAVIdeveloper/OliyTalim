@@ -53,8 +53,8 @@ class New(models.Model):
     uz_text = models.TextField()
     # ru_text = models.TextField()
     # en_text = models.TextField()
-
-    img = models.ImageField(upload_to='news/')
+    video = models.FileField(upload_to='news/',null=True,blank=True)
+    img = models.ImageField(upload_to='news/',null=True,blank=True)
     img_2 = models.ImageField(upload_to='news/',null=True,blank=True)
     img_3 = models.ImageField(upload_to='news/',null=True,blank=True)
 
@@ -94,3 +94,16 @@ class BaholashMezon(models.Model):
     def __str__(self):
         return self.OTM_nomi
 
+class Baholash(models.Model):
+    nomi = models.CharField(max_length=555)
+    oquv_ishlari = models.IntegerField()
+    yoshlar = models.IntegerField()
+    ishlab_chiqarish = models.IntegerField()
+    moliyaviy = models.IntegerField()
+    xojalik = models.IntegerField()
+    talim_sifati = models.IntegerField()
+    ijro_intizomi = models.IntegerField()
+    jazo = models.IntegerField()
+    
+    def __str__(self):
+        return self.nomi
