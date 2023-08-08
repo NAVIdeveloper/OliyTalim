@@ -89,7 +89,8 @@ class BaholashMezon(models.Model):
     OTM_nomi = models.CharField(max_length=555)
     biriktirilgan_masul = models.CharField(max_length=555)
     kelganligi = models.IntegerField(default=0)
-    tekshirish = models.BooleanField()
+    #tekshirish = models.BooleanField()
+    kelishi_kerak = models.IntegerField(default=0)
 
     def __str__(self):
         return self.OTM_nomi
