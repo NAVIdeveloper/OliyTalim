@@ -177,7 +177,7 @@ class NewViewSet(viewsets.ModelViewSet):
         return [IsAdminUser()]
     
     def list(self, request):
-        queryset = New.objects.all()
+        queryset = New.objects.all().order_by('-id')
         serializer = LoaderNew(queryset, many=True)
         
         eduuz = get_data_news("https://edu.uz/uz/news/index")
